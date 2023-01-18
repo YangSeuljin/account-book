@@ -1,4 +1,4 @@
-package com.accountbook.entity;
+package com.accountbook.model.entity;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedBy;
@@ -12,7 +12,7 @@ import javax.persistence.MappedSuperclass;
 @EntityListeners(value = {AuditingEntityListener.class})
 @MappedSuperclass
 @Getter
-public class BaseEntity extends BaseTimeEntity{
+public class BaseEntity {
     @CreatedBy
     @Column(updatable = false)
     private String createdBy;
