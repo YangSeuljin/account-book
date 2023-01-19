@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,5 +26,16 @@ public class UserController {
         // join
         userService.saveUser(UserEntity.createUserEntity(userDto, passwordEncoder));
         return new ResponseEntity<>("User 등록 성공", HttpStatus.OK);
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody UserDto userDto) {
+        String token = userService.login(userDto.getEmail(), userDto.getPassword());
+        return ResponseEntity.ok(token);
+    }
+
+    @PostMapping("/test")
+    public ResponseEntity<?> test(@RequestBody UserDto userDto) {
+        return ResponseEntity.ok("test");
     }
 }

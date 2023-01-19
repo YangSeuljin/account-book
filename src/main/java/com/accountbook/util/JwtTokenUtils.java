@@ -26,10 +26,10 @@ public class JwtTokenUtils {
 
     }
 
-    public static String generateToken(String username, String key, long expiredTimeMs) {
+    public static String generateToken(String userEmail, String key, long expiredTimeMs) {
         //Claim 생성
         Claims claims = Jwts.claims();
-        claims.put("username", username);
+        claims.put("email", userEmail);
 
         return Jwts.builder()
                 .setClaims(claims)

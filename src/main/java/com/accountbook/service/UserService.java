@@ -7,4 +7,6 @@ public interface UserService {
 
     public UserEntity loadUserByEmail(String email);
 
+    public String login(String email, String password);
+
 }
