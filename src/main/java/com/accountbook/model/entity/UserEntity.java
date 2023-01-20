@@ -47,24 +47,28 @@ public class UserEntity extends BaseTimeEntity implements UserDetails {
         return null;
     }
 
+    //계정 만료 여부 반환 (true: 만료되지 않음)
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
+    //계정 잠금 여부 반환
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
+    //패스워드의 만료 여부 반환
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
+    //계정 사용 가능 여부 반환
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     // Member 엔티티를 생성하는 메소드.
