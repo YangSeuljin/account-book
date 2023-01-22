@@ -44,7 +44,7 @@ public class UserEntity extends BaseTimeEntity implements UserDetails {
 
     @Override
     public String getUsername() {
-        return null;
+        return email;
     }
 
     //계정 만료 여부 반환 (true: 만료되지 않음)
