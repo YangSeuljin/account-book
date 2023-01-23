@@ -39,6 +39,20 @@ public class AccountBookServiceImpl implements AccountBookService {
     }
 
     @Transactional
+    public AccountBookEntity accountBookDtl(Long accountId, String email) {
+        UserEntity userEntity = getUserEntityOrException(email);
+        //post exist
+        AccountBookEntity accountBookEntity = getAccountEntityOrException(accountId);
+
+        //post permission
+        if (accountBookEntity.getUserEntity() != userEntity) {
+            throw new EntityNotFoundException();
+        }
+
+        return accountBookRepository.findById(accountBookEntity.getId()).get();
+    }
+
+    @Transactional
     public AccountBookEntity modify(Long accountId, AccountBookDto accountBookDto, String email) {
         UserEntity userEntity = getUserEntityOrException(email);
 

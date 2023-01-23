@@ -33,9 +33,14 @@ public class AccountController {
         return ResponseEntity.ok(accountBookService.save(authentication.getName(), accountBookDto));
     }
 
+    @GetMapping("/{accountId}")
+    public ResponseEntity<?> accountBookDtl(@PathVariable Long accountId, Authentication authentication) {
+        AccountBookEntity post = accountBookService.accountBookDtl(accountId, authentication.getName());
+        return ResponseEntity.ok(post);
+    }
+
     @PutMapping("/{accountId}")
     public ResponseEntity<?> modify(@PathVariable Long accountId, @RequestBody AccountBookDto accountBookDto, Authentication authentication) {
-        // user find
         AccountBookEntity post = accountBookService.modify(accountId, accountBookDto, authentication.getName());
         return ResponseEntity.ok(post);
     }

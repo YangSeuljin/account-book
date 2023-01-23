@@ -10,6 +10,8 @@ public interface AccountBookService {
 
     public long save(String email, AccountBookDto accountBookDto);
 
+    public AccountBookEntity accountBookDtl(Long accountId, String email);
+
     public AccountBookEntity modify(Long accountId, AccountBookDto accountBookDto, String email);
 
     public void delete(Long accountId, String email);

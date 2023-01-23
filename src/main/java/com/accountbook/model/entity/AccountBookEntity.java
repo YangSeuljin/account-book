@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.*;
 
@@ -16,6 +17,7 @@ import javax.persistence.*;
 @Setter
 @ToString
 @SQLDelete(sql = "UPDATE account_book SET use_yn = 'N' WHERE account_id = ?")
+@Where(clause = "use_yn = 'Y'")
 public class AccountBookEntity extends BaseTimeEntity {
     @Id
     @Column(name = "account_id")
@@ -25,10 +27,10 @@ public class AccountBookEntity extends BaseTimeEntity {
     @Column(name = "price")
     private int price;
 
-    @Column(name = "comment")
+    @Column(name = "comment",nullable = true,length = 255)
     private String comment;
 
-    @Column(name = "account_type")
+    @Column(name = "account_type",nullable = false)
     @Enumerated(EnumType.STRING)
     private AccountType accountType;
 
@@ -37,7 +39,7 @@ public class AccountBookEntity extends BaseTimeEntity {
     @JoinColumn(name = "user_id")
     private UserEntity userEntity;
 
-    @Column(name = "use_yn")
+    @Column(name = "use_yn",nullable = false,length = 1)
     private String useYn;
 
     public static AccountBookEntity of(String comment, int price, String accountType, UserEntity userEntity) {
