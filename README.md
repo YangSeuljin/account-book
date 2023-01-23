@@ -7,12 +7,13 @@
 
 create table user (user_id bigint not null, reg_time datetime(6), update_time datetime(6), email varchar(255) not null, password varchar(255) not null, role varchar(255) not null, primary key (user_id)) engine=InnoDB
 
-alter table user add constraint UK_ob8kqyqqgmefl0aco34akdtpe unique (email)
+alter table user add unique (email)
+
 # <가계부 테이블 DDL>
 
-create table account_book (account_id bigint not null, reg_time datetime(6), update_time datetime(6), account_type varchar(255) not null, comment varchar(255), price integer, use_yn varchar(1) not null, user_id bigint, primary key (account_id)) engine=InnoDB
+create table account_book (account_id bigint not null, reg_time datetime(6), update_time datetime(6), account_type varchar(255) not null, comment varchar(255), price integer not null, use_yn varchar(1) not null, user_id bigint, primary key (account_id)) engine=InnoDB
 
-alter table account_book add constraint FKkquwu309cpmhm08oyl36f7wp2 foreign key (user_id) references user (user_id)
+alter table account_book add foreign key (user_id) references user (user_id)
 
 # API 설계
      Method   URI       Description  Response Parameters(example)

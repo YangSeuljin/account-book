@@ -1,6 +1,5 @@
 package com.accountbook.model.entity;
 
-import com.accountbook.dto.AccountBookDto;
 import com.accountbook.model.AccountType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
@@ -24,13 +23,13 @@ public class AccountBookEntity extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false, length = 255)
     private int price;
 
-    @Column(name = "comment",nullable = true,length = 255)
+    @Column(name = "comment", nullable = true, length = 255)
     private String comment;
 
-    @Column(name = "account_type",nullable = false)
+    @Column(name = "account_type", nullable = false)
     @Enumerated(EnumType.STRING)
     private AccountType accountType;
 
@@ -39,7 +38,7 @@ public class AccountBookEntity extends BaseTimeEntity {
     @JoinColumn(name = "user_id")
     private UserEntity userEntity;
 
-    @Column(name = "use_yn",nullable = false,length = 1)
+    @Column(name = "use_yn", nullable = false, length = 1)
     private String useYn;
 
     public static AccountBookEntity of(String comment, int price, String accountType, UserEntity userEntity) {
@@ -48,9 +47,9 @@ public class AccountBookEntity extends BaseTimeEntity {
         accountBookEntity.setPrice(price);
         accountBookEntity.setUseYn("Y");
 
-        if(accountType.equals("income")){
+        if (accountType.equals("income")) {
             accountBookEntity.setAccountType(AccountType.INCOME);
-        }else{
+        } else {
             accountBookEntity.setAccountType(AccountType.OUTCOME);
         }
         accountBookEntity.setUserEntity(userEntity);
