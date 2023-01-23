@@ -1,6 +1,5 @@
 # account-book
 
-가계부 API
 
 # DDL
 
@@ -27,4 +26,9 @@ alter table account_book add constraint FKkquwu309cpmhm08oyl36f7wp2 foreign key 
 
 # 설명
 - JWT TOKEN을 이용하여 로그인 기능 구현
+- AWS RDS(Mysql 5.7) 사용
 - Dockerfile 이용하여 Docker Image 생성
+
+# 배포
+- AWS EC2 인스턴스에 Docker 설치하여 배포
+- url : http://13.124.92.154:8080
